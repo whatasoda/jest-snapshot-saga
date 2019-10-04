@@ -1,0 +1,320 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Counter renders 1`] = `
+<< 0 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  >>>>>> functions >>>>>>>>>>>>>>>
+    /* none */
+  >>>>>> styles >>>>>>>>>>>>>>>>>>
+    /* none */
+  >>>>>> elements >>>>>>>>>>>>>>>>
+    /* none */
+
+<< 1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  >>>>>> functions >>>>>>>>>>>>>>>
+
+    setDozen /* #0 */ (
+      0
+    ) /* return */ => (undefined)
+
+  >>>>>> styles >>>>>>>>>>>>>>>>>>
+
+    .c1 {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      width: 300px;
+    }
+
+    .c0 {
+      display: block;
+      border-radius: 4px;
+      padding: 20px;
+    }
+
+  >>>>>> elements >>>>>>>>>>>>>>>>
+
+    <ROOT>
+      <a
+        class="c0"
+      >
+        Add Item
+      </a>
+      <div
+        class="c1"
+      />
+    </ROOT>
+
+<< 2 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  >>>>>> functions >>>>>>>>>>>>>>>
+    /* none */
+  >>>>>> styles >>>>>>>>>>>>>>>>>>
+
+    .c1 {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      width: 300px;
+    }
+
+    .c2 {
+      width: 15px;
+      height: 15px;
+      margin: 5px;
+    }
+
+    .c0 {
+      display: block;
+      border-radius: 4px;
+      padding: 20px;
+    }
+
+  >>>>>> elements >>>>>>>>>>>>>>>>
+
+    <ROOT>
+      <a
+        class="c0"
+      >
+        Add Item
+      </a>
+      <div
+        class="c1"
+      >
+        <div
+          class="c2"
+        >
+          0
+        </div>
+        <div
+          class="c2"
+        >
+          1
+        </div>
+        <div
+          class="c2"
+        >
+          2
+        </div>
+        <div
+          class="c2"
+        >
+          3
+        </div>
+        <div
+          class="c2"
+        >
+          4
+        </div>
+        <div
+          class="c2"
+        >
+          5
+        </div>
+        <div
+          class="c2"
+        >
+          6
+        </div>
+        <div
+          class="c2"
+        >
+          7
+        </div>
+        <div
+          class="c2"
+        >
+          8
+        </div>
+        <div
+          class="c2"
+        >
+          9
+        </div>
+        <div
+          class="c2"
+        >
+          10
+        </div>
+      </div>
+    </ROOT>
+
+<< 3 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  >>>>>> functions >>>>>>>>>>>>>>>
+
+    setDozen /* #0 */ (
+      1
+    ) /* return */ => (undefined)
+
+  >>>>>> styles >>>>>>>>>>>>>>>>>>
+
+    .c1 {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      width: 300px;
+    }
+
+    .c2 {
+      width: 15px;
+      height: 15px;
+      margin: 5px;
+    }
+
+    .c0 {
+      display: block;
+      border-radius: 4px;
+      padding: 20px;
+    }
+
+  >>>>>> elements >>>>>>>>>>>>>>>>
+
+    <ROOT>
+      <a
+        class="c0"
+      >
+        Add Item
+      </a>
+      <div
+        class="c1"
+      >
+        <div
+          class="c2"
+        >
+          0
+        </div>
+        <div
+          class="c2"
+        >
+          1
+        </div>
+        <div
+          class="c2"
+        >
+          2
+        </div>
+        <div
+          class="c2"
+        >
+          3
+        </div>
+        <div
+          class="c2"
+        >
+          4
+        </div>
+        <div
+          class="c2"
+        >
+          5
+        </div>
+        <div
+          class="c2"
+        >
+          6
+        </div>
+        <div
+          class="c2"
+        >
+          7
+        </div>
+        <div
+          class="c2"
+        >
+          8
+        </div>
+        <div
+          class="c2"
+        >
+          9
+        </div>
+        <div
+          class="c2"
+        >
+          10
+        </div>
+        <div
+          class="c2"
+        >
+          11
+        </div>
+      </div>
+    </ROOT>
+
+<< END <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+`;
+
+exports[`Counter splitted render 1`] = `
+  >>>>>> functions >>>>>>>>>>>>>>>
+    /* none */
+  >>>>>> styles >>>>>>>>>>>>>>>>>>
+    /* none */
+  >>>>>> elements >>>>>>>>>>>>>>>>
+    /* none */
+`;
+
+exports[`Counter splitted render 2`] = `
+  >>>>>> functions >>>>>>>>>>>>>>>
+
+    setDozen /* #0 */ (
+      0
+    ) /* return */ => (undefined)
+
+  >>>>>> styles >>>>>>>>>>>>>>>>>>
+
+    .c1 {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-flex-direction: row;
+      -ms-flex-direction: row;
+      flex-direction: row;
+      -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+      width: 300px;
+    }
+
+    .c0 {
+      display: block;
+      border-radius: 4px;
+      padding: 20px;
+    }
+
+  >>>>>> elements >>>>>>>>>>>>>>>>
+
+    <ROOT>
+      <a
+        class="c0"
+      >
+        Add Item
+      </a>
+      <div
+        class="c1"
+      />
+    </ROOT>
+`;

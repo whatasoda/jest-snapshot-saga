@@ -1,0 +1,87 @@
+{
+  "name": "jest-snapshot-saga",
+  "version": "0.0.1",
+  "description": "Test utility library for complex react components, especially whose feature required to operate beyond re-rendering",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run clean && tsc && cp package.json README.md lib",
+    "clean": "rm -r lib",
+    "lint": "eslint './src/**/*.{ts,tsx}' --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whatasoda/jest-snapshot-saga.git"
+  },
+  "keywords": [
+    "jest",
+    "react",
+    "snapshot",
+    "test",
+    "styled-components"
+  ],
+  "author": "whatasoda <git@whatasoda.me>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/whatasoda/jest-snapshot-saga/issues"
+  },
+  "homepage": "https://github.com/whatasoda/jest-snapshot-saga#readme",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "npm run lint",
+      "git add"
+    ]
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "dependencies": {
+    "jest-diff": "24.9.0",
+    "jest-snapshot": "24.9.0",
+    "jest-styled-components": "6.3.3",
+    "pretty-format": "24.9.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^7.5.0",
+    "@testing-library/react": "9.1.3",
+    "@types/jest": "^24.0.18",
+    "@types/react": "16.9.2",
+    "@types/react-dom": "16.9.0",
+    "@types/styled-components": "4.1.8",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.6.1",
+    "husky": "^3.0.7",
+    "jest": "24.9.0",
+    "lint-staged": "^9.4.1",
+    "prettier": "^1.18.2",
+    "react": "16.9.0",
+    "react-dom": "16.9.0",
+    "styled-components": "^4.1.3",
+    "ts-jest": "^24.1.0",
+    "typescript": "3.5.3"
+  },
+  "peerDependencies": {
+    "@types/react": ">=16.9.2",
+    "@types/react-dom": ">=16.9.0",
+    "@testing-library/react": ">=9.1.3",
+    "react": ">=16.9.0",
+    "react-dom": ">=16.9.0",
+    "jest": ">=24.9.0",
+    "typescript": ">=3.5.3",
+    "styled-components": ">=4.1.3"
+  }
+}

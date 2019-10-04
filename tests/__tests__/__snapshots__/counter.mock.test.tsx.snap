@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Counter splitted with mock component render 1`] = `
+  >>>>>> functions >>>>>>>>>>>>>>>
+    /* none */
+  >>>>>> styles >>>>>>>>>>>>>>>>>>
+    /* none */
+  >>>>>> elements >>>>>>>>>>>>>>>>
+    /* none */
+`;
+
+exports[`Counter splitted with mock component render 2`] = `
+  >>>>>> functions >>>>>>>>>>>>>>>
+
+    setDozen /* #0 */ (
+      0
+    ) /* return */ => (undefined)
+
+  >>>>>> styles >>>>>>>>>>>>>>>>>>
+    /* none */
+  >>>>>> elements >>>>>>>>>>>>>>>>
+
+    <ROOT>
+      <MockComponent Counter
+        length={0}
+        increment={[Function]}
+      />
+    </ROOT>
+`;
+
+exports[`Counter with mock component render 1`] = `
+<< 0 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  >>>>>> functions >>>>>>>>>>>>>>>
+    /* none */
+  >>>>>> styles >>>>>>>>>>>>>>>>>>
+    /* none */
+  >>>>>> elements >>>>>>>>>>>>>>>>
+    /* none */
+
+<< 1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  >>>>>> functions >>>>>>>>>>>>>>>
+
+    setDozen /* #0 */ (
+      0
+    ) /* return */ => (undefined)
+
+  >>>>>> styles >>>>>>>>>>>>>>>>>>
+    /* none */
+  >>>>>> elements >>>>>>>>>>>>>>>>
+
+    <ROOT>
+      <MockComponent Counter
+        length={0}
+        increment={[Function]}
+      />
+    </ROOT>
+
+<< 2 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  >>>>>> functions >>>>>>>>>>>>>>>
+    /* none */
+  >>>>>> styles >>>>>>>>>>>>>>>>>>
+    /* none */
+  >>>>>> elements >>>>>>>>>>>>>>>>
+
+    <ROOT>
+      <MockComponent Counter
+        length={11}
+        increment={[Function]}
+      />
+    </ROOT>
+
+<< 3 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+  >>>>>> functions >>>>>>>>>>>>>>>
+
+    setDozen /* #0 */ (
+      1
+    ) /* return */ => (undefined)
+
+  >>>>>> styles >>>>>>>>>>>>>>>>>>
+    /* none */
+  >>>>>> elements >>>>>>>>>>>>>>>>
+
+    <ROOT>
+      <MockComponent Counter
+        length={12}
+        increment={[Function]}
+      />
+    </ROOT>
+
+<< END <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+`;
