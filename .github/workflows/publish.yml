@@ -24,6 +24,6 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 10
-      - run: sh scripts/publish.sh
+      - run: bash scripts/publish.sh
         env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+          NPM_TOKEN: ${{secrets.NPM_TOKEN}}
