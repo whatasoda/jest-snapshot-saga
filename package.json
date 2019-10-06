@@ -2,11 +2,19 @@
   "name": "jest-snapshot-saga",
   "version": "0.0.1",
   "description": "Test utility library for complex react components, especially whose feature required to operate beyond re-rendering",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "publishConfig": {
+    "refistry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "lib",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run clean && tsc && cp package.json README.md lib",
-    "clean": "rm -r lib",
+    "test": "jest -c jest.config.js",
+    "build": "npm run clean && tsc",
+    "clean": "rm -rf lib",
     "lint": "eslint './src/**/*.{ts,tsx}' --fix"
   },
   "repository": {
