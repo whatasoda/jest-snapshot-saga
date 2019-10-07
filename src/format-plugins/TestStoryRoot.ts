@@ -6,15 +6,17 @@ import { getMockSnapshotEntriesByOrder } from '../utils/collectors';
 import { ROOT_ELEMENT } from '../utils/symbols';
 import { TestStorySnapshotState, CustomPrint, SnapshotSectionKey } from '../decls';
 import diff from '../utils/diff';
-import { trimEmptyLines, addIndent } from '../utils/format';
+import { trimEmptyLines, addIndent, setIndent } from '../utils/format';
 
 const label = (name: string) => `>>>>>> ${name} `.padEnd(32, '>');
+const waveHorizon = '~'.repeat(48);
 
 const TestStoryRoot: prettyFormat.Plugin = {
   test: val => val && val[ROOT_ELEMENT],
   serialize: (state: TestStorySnapshotState, config, indentation, depth, refs, printer) => {
     indentation += config.indent;
     const childIndentation = indentation + config.indent;
+    const { description = '', getRenderCount } = state;
 
     const functions = printMockFunctions(state.functions, config, childIndentation, depth, refs, printer);
     const [styles, elements] = printElements(state.root, config, childIndentation, depth, refs, printer);
@@ -29,7 +31,15 @@ const TestStoryRoot: prettyFormat.Plugin = {
         return [`${indentation}${label(key)}`, result ? `\n${result}\n` : `${childIndentation}/* none */`].join('\n');
       })
       .join('\n');
-    return trimEmptyLines(combined);
+
+    const wave = `${indentation}${waveHorizon}`;
+
+    const header = [
+      description ? [wave, setIndent(trimEmptyLines(description), childIndentation), wave, ''].join('\n') : '',
+      `${indentation}render call: ${getRenderCount()} in total`,
+    ].join('\n');
+    const snapshot = `${header}\n${trimEmptyLines(combined)}`;
+    return trimEmptyLines(snapshot);
   },
 };
 

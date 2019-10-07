@@ -6,7 +6,7 @@ import { act } from '@testing-library/react';
 const setDozen = jest.fn().mockName('setDozen');
 describe('Counter splitted', () => {
   const start = createTestStory(CounterContainer, {
-    extraMockFunctions: [setDozen],
+    functions: [setDozen],
   });
 
   it('render', () => {
@@ -20,7 +20,7 @@ describe('Counter splitted', () => {
 
 describe('Counter', () => {
   const start = createTestStory.monolith(CounterContainer, {
-    extraMockFunctions: [setDozen],
+    functions: [setDozen],
   });
 
   it('renders', async () => {

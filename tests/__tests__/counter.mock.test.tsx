@@ -9,7 +9,7 @@ describe('Counter splitted with mock component', () => {
   const setDozen = jest.fn().mockName('setDozen');
 
   const start = createTestStory(CounterContainer, {
-    extraMockFunctions: [setDozen],
+    functions: [setDozen],
   });
 
   it('render', () => {
@@ -28,7 +28,7 @@ describe('Counter with mock component', () => {
   const setDozen = jest.fn().mockName('setDozen');
 
   const start = createTestStory.monolith(CounterContainer, {
-    extraMockFunctions: [setDozen],
+    functions: [setDozen],
   });
 
   it('render', () => {
@@ -36,15 +36,23 @@ describe('Counter with mock component', () => {
     story.snapshot();
 
     story.setProps({ setDozen });
-    story.snapshot();
+    story.snapshot(`
+      'setDozen' should be called once
+    `);
 
     Array.from({ length: 11 }).forEach(() => {
       story.dispatch('0: increment');
     });
-    story.snapshot();
+    story.snapshot(`
+      'setDozen must not be called
+      'length' of Conunter should be 11
+      render call should be 12
+    `);
 
     story.dispatch('0: increment');
-    story.snapshot();
+    story.snapshot(`
+      'setDozen' should be called once more
+    `);
 
     story.finish();
   });

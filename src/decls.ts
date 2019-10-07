@@ -12,7 +12,7 @@ export type CustomPrint<T extends any, U = string> = (...args: CustomParams<T>) 
 
 export interface StoryOptions {
   Provider?: React.ComponentType;
-  extraMockFunctions?: jest.Mock[];
+  functions?: jest.Mock[];
 }
 export interface TestStoryType<P extends object> extends PseudoEventTarget {
   result: RenderResult;
@@ -70,6 +70,8 @@ export type SnapshotSectionRecord<T> = Record<SnapshotSectionKey, T>;
 export interface TestStorySnapshotState extends Record<ROOT_ELEMENT, true> {
   root: HTMLElement;
   functions: jest.Mock[];
+  description?: string;
+  getRenderCount: () => number;
   isMonolith: boolean;
   prev: SnapshotSectionRecord<string>;
   diff: SnapshotSectionRecord<boolean>;
