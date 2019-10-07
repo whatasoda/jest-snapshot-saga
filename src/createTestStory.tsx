@@ -38,7 +38,6 @@ const start = <P extends object>(Component: ComponentType<P>, { Provider, functi
   const snapshotState: TestStorySnapshotState = {
     [ROOT_ELEMENT]: true,
     root: result.container,
-    isMonolith: false,
     getRenderCount,
     functions: functions ? functions.filter(jest.isMockFunction) : [],
     prev: { elements: '', functions: '', styles: '' },
@@ -55,23 +54,6 @@ const createTestStory = <P extends object>(
   return () => {
     const { snapshotState, ...general } = start(Component, options);
 
-    const snapshot = expect(snapshotState).toMatchSnapshot;
-    const setDiffState = (diff: Partial<SnapshotSectionRecord<boolean>> = {}) => {
-      Object.assign(snapshotState.diff, diff);
-    };
-
-    return { ...pseudoEventTarget, ...general, snapshot, setDiffState };
-  };
-};
-
-createTestStory.monolith = <P extends object>(
-  Component: ComponentType<P>,
-  options: StoryOptions = {},
-): (() => TestStoryType<P> & { finish: () => void }) => {
-  return () => {
-    const { snapshotState, ...general } = start(Component, options);
-    snapshotState.isMonolith = true;
-
     const monolithSnapshotState: MonolithSnapshotState = {
       [MONOLITH_SNAPSHOT]: true,
       list: [],
@@ -79,7 +61,6 @@ createTestStory.monolith = <P extends object>(
 
     const snapshot = (description?: string) => {
       monolithSnapshotState.list.push(serialize({ ...snapshotState, description }));
-      return snapshotState;
     };
     const setDiffState = (diff: Partial<SnapshotSectionRecord<boolean>> = {}) => {
       Object.assign(snapshotState.diff, diff);

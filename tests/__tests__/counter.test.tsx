@@ -3,23 +3,9 @@ import createTestStory from '../../src';
 import CounterContainer from '../containers/functional/CounterContainer';
 import { act } from '@testing-library/react';
 
-const setDozen = jest.fn().mockName('setDozen');
-describe('Counter splitted', () => {
-  const start = createTestStory(CounterContainer, {
-    functions: [setDozen],
-  });
-
-  it('render', () => {
-    const story = start();
-    story.snapshot();
-
-    story.setProps({ setDozen });
-    story.snapshot();
-  });
-});
-
 describe('Counter', () => {
-  const start = createTestStory.monolith(CounterContainer, {
+  const setDozen = jest.fn().mockName('setDozen');
+  const start = createTestStory(CounterContainer, {
     functions: [setDozen],
   });
 

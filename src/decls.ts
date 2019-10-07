@@ -18,13 +18,10 @@ export interface TestStoryType<P extends object> extends PseudoEventTarget {
   result: RenderResult;
   setProps: React.Dispatch<P>;
   unmount: () => void;
-  snapshot: (snapshotName?: string) => TestStorySnapshotState;
+  snapshot: (description?: string) => void;
+  finish: (snapshotName?: string) => MonolithSnapshotState;
   setDiffState: (diff?: Partial<SnapshotSectionRecord<boolean>>) => void;
   getRenderCount: () => number;
-}
-
-export interface TestStoryTypeMonolith<P extends object> extends TestStoryType<P> {
-  finish: (snapshotName?: string) => MonolithSnapshotState;
 }
 
 export type PseudoEventListener = () => void;
@@ -72,7 +69,6 @@ export interface TestStorySnapshotState extends Record<ROOT_ELEMENT, true> {
   functions: jest.Mock[];
   description?: string;
   getRenderCount: () => number;
-  isMonolith: boolean;
   prev: SnapshotSectionRecord<string>;
   diff: SnapshotSectionRecord<boolean>;
 }

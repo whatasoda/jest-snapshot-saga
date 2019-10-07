@@ -5,29 +5,13 @@ jest.mock('../components/functional/Counter.tsx', () => Counter);
 
 import CounterContainer from '../containers/functional/CounterContainer';
 
-describe('Counter splitted with mock component', () => {
-  const setDozen = jest.fn().mockName('setDozen');
-
-  const start = createTestStory(CounterContainer, {
-    functions: [setDozen],
-  });
-
-  it('render', () => {
-    const story = start();
-    story.snapshot();
-
-    story.setProps({ setDozen });
-    story.snapshot();
-  });
-});
-
 describe('Counter with mock component', () => {
   Counter.mockEffect(({ increment }, { setEventListener, order }) => {
     setEventListener(`${order}: increment`, increment);
   });
   const setDozen = jest.fn().mockName('setDozen');
 
-  const start = createTestStory.monolith(CounterContainer, {
+  const start = createTestStory(CounterContainer, {
     functions: [setDozen],
   });
 

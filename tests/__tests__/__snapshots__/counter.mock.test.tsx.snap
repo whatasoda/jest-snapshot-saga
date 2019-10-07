@@ -1,35 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Counter splitted with mock component render 1`] = `
-  render call: 0 in total
-  >>>>>> functions >>>>>>>>>>>>>>>
-    /* none */
-  >>>>>> styles >>>>>>>>>>>>>>>>>>
-    /* none */
-  >>>>>> elements >>>>>>>>>>>>>>>>
-    /* none */
-`;
-
-exports[`Counter splitted with mock component render 2`] = `
-  render call: 1 in total
-  >>>>>> functions >>>>>>>>>>>>>>>
-
-    setDozen /* #0 */ (
-      0
-    ) /* return */ => (undefined)
-
-  >>>>>> styles >>>>>>>>>>>>>>>>>>
-    /* none */
-  >>>>>> elements >>>>>>>>>>>>>>>>
-
-    <ROOT>
-      <MockComponent Counter
-        length={0}
-        increment={[Function]}
-      />
-    </ROOT>
-`;
-
 exports[`Counter with mock component render 1`] = `
 << 0 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
