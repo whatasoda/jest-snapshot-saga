@@ -6,7 +6,7 @@ import { getMockSnapshotEntriesByOrder } from '../utils/collectors';
 import { ROOT_ELEMENT } from '../utils/symbols';
 import { TestStorySnapshotState, CustomPrint, SnapshotSectionKey } from '../decls';
 import diff from '../utils/diff';
-import { trimEmptyLines, addIndent } from '../utils/format';
+import { trimEmptyLines, addIndent, setIndent } from '../utils/format';
 
 const label = (name: string) => `>>>>>> ${name} `.padEnd(32, '>');
 
@@ -32,7 +32,7 @@ const TestStoryRoot: prettyFormat.Plugin = {
       .join('\n');
 
     const header = [
-      snapshotName ? `${indentation}${snapshotName}\n` : '',
+      snapshotName ? `${trimEmptyLines(setIndent(snapshotName, indentation))}\n` : '',
       `${indentation}render call: ${getRenderCount()} in total`,
     ].join('\n');
     const snapshot = `${header}\n${trimEmptyLines(combined)}`;
