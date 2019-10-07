@@ -1,44 +1,30 @@
-import createTestStory from '../../src';
+import SnapshotSaga from '../../src';
 
 import CounterContainer from '../containers/functional/CounterContainer';
 import { act } from '@testing-library/react';
 
-const setDozen = jest.fn().mockName('setDozen');
-describe('Counter splitted', () => {
-  const start = createTestStory(CounterContainer, {
-    functions: [setDozen],
-  });
-
-  it('render', () => {
-    const story = start();
-    story.snapshot();
-
-    story.setProps({ setDozen });
-    story.snapshot();
-  });
-});
-
 describe('Counter', () => {
-  const start = createTestStory.monolith(CounterContainer, {
+  const setDozen = jest.fn().mockName('setDozen');
+  const start = SnapshotSaga(CounterContainer, {
     functions: [setDozen],
   });
 
   it('renders', async () => {
-    const story = start();
-    story.snapshot();
+    const saga = start();
+    saga.snapshot();
 
-    story.setProps({ setDozen });
-    story.snapshot();
+    saga.setProps({ setDozen });
+    saga.snapshot();
 
-    const button = await story.result.findByText('Add Item');
+    const button = await saga.result.findByText('Add Item');
     Array.from({ length: 11 }).forEach(() => {
       act(() => button.click());
     });
-    story.snapshot();
+    saga.snapshot();
 
     act(() => button.click());
-    story.snapshot();
+    saga.snapshot();
 
-    story.finish();
+    saga.finish();
   });
 });

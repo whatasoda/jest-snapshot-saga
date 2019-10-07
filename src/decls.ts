@@ -1,4 +1,4 @@
-import { MOCK_ELEMENT, ROOT_ELEMENT, MONOLITH_SNAPSHOT } from './utils/symbols';
+import { MOCK_ELEMENT, SAGA_ELEMENT, SAGA_ROOT } from './utils/symbols';
 
 export type SnapshotType = 'FULL' | 'DIFF';
 
@@ -10,21 +10,18 @@ type CustomParams<T, U extends PrinterParams = PrinterParams> = {
 };
 export type CustomPrint<T extends any, U = string> = (...args: CustomParams<T>) => U;
 
-export interface StoryOptions {
+export interface SagaOptions {
   Provider?: React.ComponentType;
   functions?: jest.Mock[];
 }
-export interface TestStoryType<P extends object> extends PseudoEventTarget {
+export interface SnapshotSagaType<P extends object> extends PseudoEventTarget {
   result: RenderResult;
   setProps: React.Dispatch<P>;
   unmount: () => void;
-  snapshot: (snapshotName?: string) => TestStorySnapshotState;
+  snapshot: (description?: string) => void;
+  finish: (snapshotName?: string) => SagaRootSnapshotState;
   setDiffState: (diff?: Partial<SnapshotSectionRecord<boolean>>) => void;
   getRenderCount: () => number;
-}
-
-export interface TestStoryTypeMonolith<P extends object> extends TestStoryType<P> {
-  finish: (snapshotName?: string) => MonolithSnapshotState;
 }
 
 export type PseudoEventListener = () => void;
@@ -67,16 +64,15 @@ export interface MockElementSnapshotState {
 export type SnapshotSectionKey = 'functions' | 'styles' | 'elements';
 export type SnapshotSectionRecord<T> = Record<SnapshotSectionKey, T>;
 
-export interface TestStorySnapshotState extends Record<ROOT_ELEMENT, true> {
+export interface SagaElementSnapshotState extends Record<SAGA_ELEMENT, true> {
   root: HTMLElement;
   functions: jest.Mock[];
   description?: string;
   getRenderCount: () => number;
-  isMonolith: boolean;
   prev: SnapshotSectionRecord<string>;
   diff: SnapshotSectionRecord<boolean>;
 }
 
-export interface MonolithSnapshotState extends Record<MONOLITH_SNAPSHOT, true> {
-  list: string[];
+export interface SagaRootSnapshotState extends Record<SAGA_ROOT, true> {
+  snapshots: string[];
 }
