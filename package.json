@@ -1,6 +1,6 @@
 {
   "name": "jest-snapshot-saga",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Test utility library for complex react components, especially whose feature required to operate beyond re-rendering",
   "main": "lib/index.js",
   "publishConfig": {
