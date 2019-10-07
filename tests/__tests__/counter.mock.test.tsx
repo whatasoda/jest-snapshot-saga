@@ -1,4 +1,4 @@
-import createTestStory, { createMockComponent } from '../../src';
+import SnapshotSaga, { createMockComponent } from '../../src';
 
 const Counter = createMockComponent<typeof import('../components/functional/Counter').default>('Counter');
 jest.mock('../components/functional/Counter.tsx', () => Counter);
@@ -11,33 +11,33 @@ describe('Counter with mock component', () => {
   });
   const setDozen = jest.fn().mockName('setDozen');
 
-  const start = createTestStory(CounterContainer, {
+  const start = SnapshotSaga(CounterContainer, {
     functions: [setDozen],
   });
 
   it('render', () => {
-    const story = start();
-    story.snapshot();
+    const saga = start();
+    saga.snapshot();
 
-    story.setProps({ setDozen });
-    story.snapshot(`
+    saga.setProps({ setDozen });
+    saga.snapshot(`
       'setDozen' should be called once
     `);
 
     Array.from({ length: 11 }).forEach(() => {
-      story.dispatch('0: increment');
+      saga.dispatch('0: increment');
     });
-    story.snapshot(`
+    saga.snapshot(`
       'setDozen must not be called
       'length' of Conunter should be 11
       render call should be 12
     `);
 
-    story.dispatch('0: increment');
-    story.snapshot(`
+    saga.dispatch('0: increment');
+    saga.snapshot(`
       'setDozen' should be called once more
     `);
 
-    story.finish();
+    saga.finish();
   });
 });

@@ -1,11 +1,11 @@
-export const MOCK_ELEMENT = Symbol('__TEST_STORY_MOCK_ELEMENT__');
+export const MOCK_ELEMENT = Symbol('__MOCK_ELEMENT__');
 export type MOCK_ELEMENT = typeof MOCK_ELEMENT;
 
-export const ROOT_ELEMENT = Symbol('__TEST_STORY_ROOT_ELEMENT__');
-export type ROOT_ELEMENT = typeof ROOT_ELEMENT;
+export const SAGA_ELEMENT = Symbol('__SAGA_ELEMENT__');
+export type SAGA_ELEMENT = typeof SAGA_ELEMENT;
 
-export const MOCK_FUNCTION = Symbol('__TEST_STORY_MOCK_FUNCTION__');
+export const MOCK_FUNCTION = Symbol('__MOCK_FUNCTION__');
 export type MOCK_FUNCTION = typeof MOCK_FUNCTION;
 
-export const MONOLITH_SNAPSHOT = Symbol('__TEST_STORY_MONOLITH_SNAPSHOT__');
-export type MONOLITH_SNAPSHOT = typeof MONOLITH_SNAPSHOT;
+export const SAGA_ROOT = Symbol('__SAGA_ROOT__');
+export type SAGA_ROOT = typeof SAGA_ROOT;

@@ -1,15 +1,15 @@
 import prettyFormat from 'pretty-format';
-import { MONOLITH_SNAPSHOT } from '../utils/symbols';
-import { MonolithSnapshotState } from '../decls';
+import { SAGA_ROOT } from '../utils/symbols';
+import { SagaRootSnapshotState } from '../decls';
 import { trimEmptyLines } from '../utils/format';
 
 const label = (name: string | number) => `<< ${name} `.padEnd(48, '<');
 
-const MonolithSnapshot: prettyFormat.NewPlugin = {
-  test: val => val && val[MONOLITH_SNAPSHOT],
-  serialize: (state: MonolithSnapshotState, _, indentation) => {
+const SagaRoot: prettyFormat.NewPlugin = {
+  test: val => val && val[SAGA_ROOT],
+  serialize: (state: SagaRootSnapshotState, _, indentation) => {
     return (
-      state.list
+      state.snapshots
         .map((currentSnapshot, i) => {
           const curr = trimEmptyLines(currentSnapshot);
           return `${indentation}${label(i)}\n\n${curr}\n`;
@@ -19,4 +19,4 @@ const MonolithSnapshot: prettyFormat.NewPlugin = {
   },
 };
 
-export default MonolithSnapshot;
+export default SagaRoot;

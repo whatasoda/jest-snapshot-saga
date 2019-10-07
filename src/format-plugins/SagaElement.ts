@@ -3,17 +3,17 @@ import { printListItems } from 'pretty-format/build/collections';
 import 'jest-styled-components'; // this line applies internal implementation to jest
 import { styleSheetSerializer } from 'jest-styled-components/serializer';
 import { getMockSnapshotEntriesByOrder } from '../utils/collectors';
-import { ROOT_ELEMENT } from '../utils/symbols';
-import { TestStorySnapshotState, CustomPrint, SnapshotSectionKey } from '../decls';
+import { SAGA_ELEMENT } from '../utils/symbols';
+import { SagaElementSnapshotState, CustomPrint, SnapshotSectionKey } from '../decls';
 import diff from '../utils/diff';
 import { trimEmptyLines, addIndent, setIndent } from '../utils/format';
 
 const label = (name: string) => `>>>>>> ${name} `.padEnd(32, '>');
 const waveHorizon = '~'.repeat(48);
 
-const TestStoryRoot: prettyFormat.Plugin = {
-  test: val => val && val[ROOT_ELEMENT],
-  serialize: (state: TestStorySnapshotState, config, indentation, depth, refs, printer) => {
+const SagaElement: prettyFormat.Plugin = {
+  test: val => val && val[SAGA_ELEMENT],
+  serialize: (state: SagaElementSnapshotState, config, indentation, depth, refs, printer) => {
     indentation += config.indent;
     const childIndentation = indentation + config.indent;
     const { description = '', getRenderCount } = state;
@@ -87,4 +87,4 @@ const printMockFunctions: CustomPrint<jest.Mock[]> = (functions, config, indenta
   return mockFunctions;
 };
 
-export default TestStoryRoot;
+export default SagaElement;
