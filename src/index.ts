@@ -2,8 +2,8 @@ import { SnapshotType, SagaOptions, SnapshotSagaType, MockComponentOptions } fro
 export { SnapshotType, SagaOptions, SnapshotSagaType, MockComponentOptions };
 
 import createMockComponent from './mock/component';
-import mockPromiseOnce from './mock/promise';
-export { createMockComponent, mockPromiseOnce };
+import mockReturnPromise from './mock/promise';
+export { createMockComponent, mockReturnPromise };
 
 import SnapshotSaga from './SnapshotSaga';
 export default SnapshotSaga;
