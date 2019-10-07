@@ -70,6 +70,8 @@ export type SnapshotSectionRecord<T> = Record<SnapshotSectionKey, T>;
 export interface TestStorySnapshotState extends Record<ROOT_ELEMENT, true> {
   root: HTMLElement;
   functions: jest.Mock[];
+  snapshotName?: string;
+  getRenderCount: () => number;
   isMonolith: boolean;
   prev: SnapshotSectionRecord<string>;
   diff: SnapshotSectionRecord<boolean>;

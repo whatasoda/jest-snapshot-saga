@@ -39,6 +39,7 @@ const start = <P extends object>(Component: ComponentType<P>, { Provider, extraM
     [ROOT_ELEMENT]: true,
     root: result.container,
     isMonolith: false,
+    getRenderCount,
     functions: extraMockFunctions ? extraMockFunctions.filter(jest.isMockFunction) : [],
     prev: { elements: '', functions: '', styles: '' },
     diff: { elements: false, functions: false, styles: false },
@@ -52,11 +53,11 @@ const createTestStory = <P extends object>(
   options: StoryOptions = {},
 ): (() => TestStoryType<P>) => {
   return () => {
-    const general = start(Component, options);
+    const { snapshotState, ...general } = start(Component, options);
 
-    const snapshot = expect(general.snapshotState).toMatchSnapshot;
+    const snapshot = expect(snapshotState).toMatchSnapshot;
     const setDiffState = (diff: Partial<SnapshotSectionRecord<boolean>> = {}) => {
-      Object.assign(general.snapshotState.diff, diff);
+      Object.assign(snapshotState.diff, diff);
     };
 
     return { ...pseudoEventTarget, ...general, snapshot, setDiffState };
@@ -68,20 +69,20 @@ createTestStory.monolith = <P extends object>(
   options: StoryOptions = {},
 ): (() => TestStoryType<P> & { finish: () => void }) => {
   return () => {
-    const general = start(Component, options);
-    general.snapshotState.isMonolith = true;
+    const { snapshotState, ...general } = start(Component, options);
+    snapshotState.isMonolith = true;
 
     const monolithSnapshotState: MonolithSnapshotState = {
       [MONOLITH_SNAPSHOT]: true,
       list: [],
     };
 
-    const snapshot = () => {
-      monolithSnapshotState.list.push(serialize(general.snapshotState));
-      return general.snapshotState;
+    const snapshot = (snapshotName?: string) => {
+      monolithSnapshotState.list.push(serialize({ ...snapshotState, snapshotName }));
+      return snapshotState;
     };
     const setDiffState = (diff: Partial<SnapshotSectionRecord<boolean>> = {}) => {
-      Object.assign(general.snapshotState.diff, diff);
+      Object.assign(snapshotState.diff, diff);
     };
 
     const finish = expect(monolithSnapshotState).toMatchSnapshot;
