@@ -36,15 +36,23 @@ describe('Counter with mock component', () => {
     story.snapshot();
 
     story.setProps({ setDozen });
-    story.snapshot('"setDozen" should be called once');
+    story.snapshot(`
+      'setDozen' should be called once
+    `);
 
     Array.from({ length: 11 }).forEach(() => {
       story.dispatch('0: increment');
     });
-    story.snapshot('"setDozen" must not be called');
+    story.snapshot(`
+      'setDozen must not be called
+      'length' of Conunter should be 11
+      render call should be 12
+    `);
 
     story.dispatch('0: increment');
-    story.snapshot('"setDozen" should be called once more');
+    story.snapshot(`
+      'setDozen' should be called once more
+    `);
 
     story.finish();
   });

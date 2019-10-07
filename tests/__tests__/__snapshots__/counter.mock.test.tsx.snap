@@ -43,7 +43,9 @@ exports[`Counter with mock component render 1`] = `
 
 << 1 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-  "setDozen" should be called once
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    'setDozen' should be called once
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   render call: 1 in total
   >>>>>> functions >>>>>>>>>>>>>>>
@@ -65,7 +67,11 @@ exports[`Counter with mock component render 1`] = `
 
 << 2 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-  "setDozen" must not be called
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    'setDozen must not be called
+    'length' of Conunter should be 11
+    render call should be 12
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   render call: 12 in total
   >>>>>> functions >>>>>>>>>>>>>>>
@@ -83,7 +89,9 @@ exports[`Counter with mock component render 1`] = `
 
 << 3 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-  "setDozen" should be called once more
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    'setDozen' should be called once more
+  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   render call: 13 in total
   >>>>>> functions >>>>>>>>>>>>>>>
