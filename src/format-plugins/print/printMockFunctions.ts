@@ -37,16 +37,15 @@ const getMockSnapshotEntriesByOrder = (functions: jest.Mock[], mockClear?: boole
     const { invocationCallOrder, calls, results, instances } = func.mock;
 
     const entries = invocationCallOrder.map<MockSnapshotEntry>((order, i) => {
-      const result = results[i];
+      const { type, value } = results[i];
       const instance = instances[i];
-      const isInstance = result.value === undefined && Boolean(instance);
-      const value = result.value || instance;
+      const didConstruct = instance instanceof func;
       return {
         order,
         displayName,
         call: calls[i],
-        type: isInstance ? 'instance' : result.type,
-        value,
+        type: didConstruct ? 'instance' : type,
+        value: didConstruct ? instance : value,
       };
     });
 
