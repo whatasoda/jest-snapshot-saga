@@ -9,13 +9,14 @@ import diff from '../utils/diff';
 import { trimEmptyLines, addIndent, setIndent } from '../utils/format';
 
 const label = (name: string) => `>>>>>> ${name} `.padEnd(32, '>');
+const waveHorizon = '~'.repeat(48);
 
 const TestStoryRoot: prettyFormat.Plugin = {
   test: val => val && val[ROOT_ELEMENT],
   serialize: (state: TestStorySnapshotState, config, indentation, depth, refs, printer) => {
     indentation += config.indent;
     const childIndentation = indentation + config.indent;
-    const { snapshotName = '', getRenderCount } = state;
+    const { description = '', getRenderCount } = state;
 
     const functions = printMockFunctions(state.functions, config, childIndentation, depth, refs, printer);
     const [styles, elements] = printElements(state.root, config, childIndentation, depth, refs, printer);
@@ -31,8 +32,10 @@ const TestStoryRoot: prettyFormat.Plugin = {
       })
       .join('\n');
 
+    const wave = `${indentation}${waveHorizon}`;
+
     const header = [
-      snapshotName ? `${trimEmptyLines(setIndent(snapshotName, indentation))}\n` : '',
+      description ? [wave, setIndent(trimEmptyLines(description), childIndentation), wave, ''].join('\n') : '',
       `${indentation}render call: ${getRenderCount()} in total`,
     ].join('\n');
     const snapshot = `${header}\n${trimEmptyLines(combined)}`;

@@ -77,8 +77,8 @@ createTestStory.monolith = <P extends object>(
       list: [],
     };
 
-    const snapshot = (snapshotName?: string) => {
-      monolithSnapshotState.list.push(serialize({ ...snapshotState, snapshotName }));
+    const snapshot = (description?: string) => {
+      monolithSnapshotState.list.push(serialize({ ...snapshotState, description }));
       return snapshotState;
     };
     const setDiffState = (diff: Partial<SnapshotSectionRecord<boolean>> = {}) => {
