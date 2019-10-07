@@ -14,49 +14,24 @@ import pseudoEventTarget from './mock/pseudoEventTarget';
 
 const start = <P extends object>(Component: ComponentType<P>, { Provider, extraMockFunctions }: StoryOptions = {}) => {
   const { Injected, getRenderCount } = injectRenderCounter(Component);
-  let using = false;
-  let used = false;
-
-  let dispatchUnmount = (null as unknown) as Dispatch<true>;
-  let dispatchProps = (null as unknown) as Dispatch<P>;
+  let dispatchProps = (null as unknown) as Dispatch<P | null>;
 
   const StoryComponent: FunctionComponent = () => {
     const [props, setProps] = useState<P | null>(null);
-    const [unmount, setUnmount] = useState(false);
     useEffect(() => {
-      assertUsed('render');
-      assertUsing('render');
-      using = true;
-      dispatchUnmount = setUnmount;
       dispatchProps = setProps;
-      return () => {
-        used = true;
-      };
     }, []);
 
-    if (unmount || !props) return null;
+    if (!props) return null;
     return <Injected {...props} />;
   };
 
   const setProps = (props: P) => {
-    assertUsed('set props');
     act(() => dispatchProps(props));
   };
 
   const unmount = () => {
-    assertUsed('unmount');
-    dispatchUnmount(true);
-  };
-
-  const assertUsing = (action: string): void | never => {
-    if (using) {
-      throw new Error(`Cannot ${action} to a test story being used.`);
-    }
-  };
-  const assertUsed = (action: string): void | never => {
-    if (used) {
-      throw new Error(`Cannot ${action} to a test story already used.`);
-    }
+    act(() => dispatchProps(null));
   };
 
   const result = render(<StoryComponent />, { wrapper: Provider });
@@ -77,22 +52,14 @@ const createTestStory = <P extends object>(
   options: StoryOptions = {},
 ): (() => TestStoryType<P>) => {
   return () => {
-    const { getRenderCount, setProps, unmount, snapshotState, result } = start(Component, options);
+    const general = start(Component, options);
 
-    const snapshot = expect(snapshotState).toMatchSnapshot;
+    const snapshot = expect(general.snapshotState).toMatchSnapshot;
     const setDiffState = (diff: Partial<SnapshotSectionRecord<boolean>> = {}) => {
-      Object.assign(snapshotState.diff, diff);
+      Object.assign(general.snapshotState.diff, diff);
     };
 
-    return {
-      ...pseudoEventTarget,
-      setProps,
-      unmount,
-      snapshot,
-      setDiffState,
-      getRenderCount,
-      result,
-    };
+    return { ...pseudoEventTarget, ...general, snapshot, setDiffState };
   };
 };
 
@@ -101,8 +68,8 @@ createTestStory.monolith = <P extends object>(
   options: StoryOptions = {},
 ): (() => TestStoryType<P> & { finish: () => void }) => {
   return () => {
-    const { getRenderCount, setProps, unmount, snapshotState, result } = start(Component, options);
-    snapshotState.isMonolith = true;
+    const general = start(Component, options);
+    general.snapshotState.isMonolith = true;
 
     const monolithSnapshotState: MonolithSnapshotState = {
       [MONOLITH_SNAPSHOT]: true,
@@ -110,25 +77,16 @@ createTestStory.monolith = <P extends object>(
     };
 
     const snapshot = () => {
-      monolithSnapshotState.list.push(serialize(snapshotState));
-      return snapshotState;
+      monolithSnapshotState.list.push(serialize(general.snapshotState));
+      return general.snapshotState;
     };
     const setDiffState = (diff: Partial<SnapshotSectionRecord<boolean>> = {}) => {
-      Object.assign(snapshotState.diff, diff);
+      Object.assign(general.snapshotState.diff, diff);
     };
 
     const finish = expect(monolithSnapshotState).toMatchSnapshot;
 
-    return {
-      ...pseudoEventTarget,
-      setProps,
-      unmount,
-      snapshot,
-      setDiffState,
-      getRenderCount,
-      result,
-      finish,
-    };
+    return { ...pseudoEventTarget, ...general, snapshot, setDiffState, finish };
   };
 };
 
