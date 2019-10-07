@@ -9,7 +9,7 @@ describe('Counter splitted with mock component', () => {
   const setDozen = jest.fn().mockName('setDozen');
 
   const start = createTestStory(CounterContainer, {
-    extraMockFunctions: [setDozen],
+    functions: [setDozen],
   });
 
   it('render', () => {
@@ -28,7 +28,7 @@ describe('Counter with mock component', () => {
   const setDozen = jest.fn().mockName('setDozen');
 
   const start = createTestStory.monolith(CounterContainer, {
-    extraMockFunctions: [setDozen],
+    functions: [setDozen],
   });
 
   it('render', () => {

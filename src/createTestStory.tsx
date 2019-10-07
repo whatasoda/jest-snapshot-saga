@@ -12,7 +12,7 @@ import injectRenderCounter from './utils/injectRenderCounter';
 import serialize from './serialize';
 import pseudoEventTarget from './mock/pseudoEventTarget';
 
-const start = <P extends object>(Component: ComponentType<P>, { Provider, extraMockFunctions }: StoryOptions = {}) => {
+const start = <P extends object>(Component: ComponentType<P>, { Provider, functions }: StoryOptions = {}) => {
   const { Injected, getRenderCount } = injectRenderCounter(Component);
   let dispatchProps = (null as unknown) as Dispatch<P | null>;
 
@@ -40,7 +40,7 @@ const start = <P extends object>(Component: ComponentType<P>, { Provider, extraM
     root: result.container,
     isMonolith: false,
     getRenderCount,
-    functions: extraMockFunctions ? extraMockFunctions.filter(jest.isMockFunction) : [],
+    functions: functions ? functions.filter(jest.isMockFunction) : [],
     prev: { elements: '', functions: '', styles: '' },
     diff: { elements: false, functions: false, styles: false },
   };
