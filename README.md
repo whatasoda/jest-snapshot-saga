@@ -1,4 +1,5 @@
 # jest-snapshot-saga
+[![npm version](https://badge.fury.io/js/jest-snapshot-saga.svg)](https://badge.fury.io/js/jest-snapshot-saga)
 
 :rotating_light: **This library is NOT an alternative for E2E test.** :rotating_light:
 
